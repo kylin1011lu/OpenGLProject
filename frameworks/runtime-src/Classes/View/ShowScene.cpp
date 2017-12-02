@@ -1,12 +1,12 @@
-#include "HelloWorldScene.h"
+#include "ShowScene.h"
 #include "PolygonLayer/PolygonLayer.h"
 
 
 USING_NS_CC;
 
-Scene* HelloWorld::createScene()
+Scene* ShowScene::createScene()
 {
-    return HelloWorld::create();
+    return ShowScene::create();
 }
 
 // Print useful error message instead of segfaulting when files are not there.
@@ -17,7 +17,7 @@ static void problemLoading(const char* filename)
 }
 
 // on "init" you need to initialize your instance
-bool HelloWorld::init()
+bool ShowScene::init()
 {
     //////////////////////////////
     // 1. super init first
@@ -26,8 +26,8 @@ bool HelloWorld::init()
         return false;
     }
 
-    auto visibleSize = Director::getInstance()->getVisibleSize();
-    Vec2 origin = Director::getInstance()->getVisibleOrigin();
+    _visibleSize = Director::getInstance()->getVisibleSize();
+    _origin = Director::getInstance()->getVisibleOrigin();
 
     /////////////////////////////
     // 2. add a menu item with "X" image, which is clicked to quit the program
@@ -37,7 +37,7 @@ bool HelloWorld::init()
     auto closeItem = MenuItemImage::create(
                                            "CloseNormal.png",
                                            "CloseSelected.png",
-                                           CC_CALLBACK_1(HelloWorld::menuCloseCallback, this));
+                                           CC_CALLBACK_1(ShowScene::menuCloseCallback, this));
 
     if (closeItem == nullptr ||
         closeItem->getContentSize().width <= 0 ||
@@ -47,8 +47,8 @@ bool HelloWorld::init()
     }
     else
     {
-        float x = origin.x + visibleSize.width - closeItem->getContentSize().width/2;
-        float y = origin.y + closeItem->getContentSize().height/2;
+		float x = _origin.x + _visibleSize.width - closeItem->getContentSize().width / 2;
+		float y = _origin.y + closeItem->getContentSize().height / 2;
         closeItem->setPosition(Vec2(x,y));
     }
 
@@ -60,48 +60,18 @@ bool HelloWorld::init()
     /////////////////////////////
     // 3. add your codes below...
 
-    // add a label shows "Hello World"
-    // create and initialize a label
-
-    auto label = Label::createWithTTF("Hello World", "fonts/Marker Felt.ttf", 24);
-    if (label == nullptr)
-    {
-        problemLoading("'fonts/Marker Felt.ttf'");
-    }
-    else
-    {
-        // position the label on the center of the screen
-        label->setPosition(Vec2(origin.x + visibleSize.width/2,
-                                origin.y + visibleSize.height - label->getContentSize().height));
-
-        // add the label as a child to this layer
-        this->addChild(label, 1);
-    }
-
-    // add "HelloWorld" splash screen"
-    auto sprite = Sprite::create("HelloWorld.png");
-    if (sprite == nullptr)
-    {
-        problemLoading("'HelloWorld.png'");
-    }
-    else
-    {
-        // position the sprite on the center of the screen
-        sprite->setPosition(Vec2(visibleSize.width/2 + origin.x, visibleSize.height/2 + origin.y));
-
-        // add the sprite as a child to this layer
-        this->addChild(sprite, 0);
-    }
-
 
 	//¶à±ßÐÎïÎ¿Õlayer
-	auto polylayer = PolygonLayer::create(Color4B::BLUE);
-	this->addChild(polylayer);
+	//auto polylayer = PolygonLayer::create(Color4B::BLUE);
+	//this->addChild(polylayer);
+
+	addBubblesShaderSprite();
+
     return true;
 }
 
 
-void HelloWorld::menuCloseCallback(Ref* pSender)
+void ShowScene::menuCloseCallback(Ref* pSender)
 {
     //Close the cocos2d-x game scene and quit the application
     Director::getInstance()->end();
@@ -116,4 +86,33 @@ void HelloWorld::menuCloseCallback(Ref* pSender)
     //_eventDispatcher->dispatchEvent(&customEndEvent);
 
 
+}
+
+void ShowScene::addBubblesShaderSprite()
+{
+	// This is the display size of the quad where for the render beam (in pixels, not points)
+	Size texSize(400, 80);
+
+	auto sprite = Sprite::create();
+	sprite->setPosition(Vec2(_origin.x + _visibleSize.width / 2, _origin.y + _visibleSize.height / 2));
+	sprite->setTextureRect(Rect(0, 0, texSize.width, texSize.height));
+	//sprite->setBlendFunc(BlendFunc::ADDITIVE);
+
+
+	auto prog = GLProgram::createWithFilenames("Shaders/bubbles.vert", "Shaders/bubbles.frag");
+	auto glprogramstate = GLProgramState::getOrCreateWithGLProgram(prog);
+	sprite->setGLProgramState(glprogramstate);
+
+	// note: iResolution is only "size of screen" because shadertoy applys to full view quad
+	auto scale_factor = Director::getInstance()->getContentScaleFactor();
+	Vec3 iResolution(texSize.width / (2.f / scale_factor),
+		texSize.height / (2.f / scale_factor),
+		scale_factor);
+	glprogramstate->setUniformVec3("iResolution", iResolution);
+
+	//auto move = MoveBy::create(5.0f, Vec2(100, 100));
+	//auto seq = Sequence::create(move, move->reverse(), NULL);
+	//sprite->runAction(RepeatForever::create(seq));
+	//sprite->setPosition(400, 300);
+	this->addChild(sprite);
 }

@@ -30,7 +30,7 @@ using namespace std;
 //是否开启lua工程
 //#define LUA_ENABLE   
 
-#include "HelloWorld/HelloWorldScene.h"
+#include "View/ShowScene.h"
 
 AppDelegate::AppDelegate()
 {
@@ -137,7 +137,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 		director->setContentScaleFactor(MIN(smallResolutionSize.height / designResolutionSize.height, smallResolutionSize.width / designResolutionSize.width));
 	}
 
-	auto scene = HelloWorld::createScene();
+	auto scene = ShowScene::createScene();
 	director->runWithScene(scene);
 #endif
 
