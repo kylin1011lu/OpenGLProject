@@ -10,6 +10,12 @@
     <Filter Include="resource">
       <UniqueIdentifier>{2d1d0979-58cd-4ab6-b91c-13650158f1fa}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Classes\PolygonLayer">
+      <UniqueIdentifier>{92142920-a88a-463f-b410-a2dbe85fbe64}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Classes\HelloWorld">
+      <UniqueIdentifier>{611e0927-e97d-4567-9235-c4aced52fe06}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Classes\AppDelegate.h">
@@ -26,6 +32,12 @@
     <ClInclude Include="targetver.h">
       <Filter>win32</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\PolygonLayer\PolygonLayer.h">
+      <Filter>Classes\PolygonLayer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Classes\HelloWorld\HelloWorldScene.h">
+      <Filter>Classes\HelloWorld</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp">
@@ -37,6 +49,12 @@
     <ClCompile Include="SimulatorWin.cpp" />
     <ClCompile Include="stdafx.cpp">
       <Filter>win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\PolygonLayer\PolygonLayer.cpp">
+      <Filter>Classes\PolygonLayer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\HelloWorld\HelloWorldScene.cpp">
+      <Filter>Classes\HelloWorld</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -1,3 +1,7 @@
 /frameworks/cocos2d-x
 
 /runtime
+*Debug.win32
+*.opensdf
+*.sdf
+/simulator
