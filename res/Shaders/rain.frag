@@ -41,7 +41,7 @@ varying float iTime;
 #define HIGH_QUALITY
 #define CAM_SHAKE 1.
 #define LANE_BIAS .5
-//#define RAIN
+#define RAIN
 //#define DROP_DEBUG
 
 vec4      iMouse = vec4(0.,0.0,0.,0.);                // mouse pixel coords. xy: current (if MLB down), zw: click
