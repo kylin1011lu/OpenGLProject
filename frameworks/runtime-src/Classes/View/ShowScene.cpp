@@ -76,9 +76,23 @@ bool ShowScene::init()
 
 	//透明泡泡 https://www.shadertoy.com/view/MlXBWM
 	//auto sn = ShaderNode::shaderNodeWithVertex("Shaders/Common.vert", "Shaders/transparent_bubbles.frag");
-
+	
 	//下雨玻璃 https://www.shadertoy.com/view/MdfBRX
-	auto sn = ShaderNode::shaderNodeWithVertex("Shaders/Common.vert", "Shaders/rain.frag");
+	//auto sn = ShaderNode::shaderNodeWithVertex("Shaders/Common.vert", "Shaders/rain.frag");
+
+	//心形烟花 https://www.shadertoy.com/view/Xl2SRR
+	//auto sn = ShaderNode::shaderNodeWithVertex("Shaders/Common.vert", "Shaders/fireworkslove.frag");
+	//sn->getGLProgramState()->setUniformTexture("iChannel0", TextureCache::getInstance()->addImage("Textures/rgba_noise.png"));
+
+	//波浪圈 https://www.shadertoy.com/view/ldX3zr
+	//auto sn = ShaderNode::shaderNodeWithVertex("Shaders/Common.vert", "Shaders/waves.frag");
+
+	//光圈 https://www.shadertoy.com/view/XdlSDs
+	//auto sn = ShaderNode::shaderNodeWithVertex("Shaders/Common.vert", "Shaders/lightcircle.frag");
+	
+	//调色板 https://www.shadertoy.com/view/ll2GD3
+	auto sn = ShaderNode::shaderNodeWithVertex("Shaders/Common.vert", "Shaders/Palettes.frag");
+	sn->getGLProgramState()->setUniformTexture("iChannel0", TextureCache::getInstance()->addImage("Textures/rgba_noise.png"));
 
 	addChild(sn);
     return true;
