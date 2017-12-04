@@ -68,14 +68,18 @@ bool ShowScene::init()
 
 	//addBubblesShaderSprite();
 
-	//∂‡≤ ≈›≈›“∆∂Øshader ≤Œøºhttps://www.shadertoy.com/view/4dl3zn
+	//∂‡≤ ≈›≈›“∆∂Øshader https://www.shadertoy.com/view/4dl3zn
 	//auto sn = ShaderNode::shaderNodeWithVertex("Shaders/Common.vert", "Shaders/bubbles.frag");
 	
-	//¿ÿ…‰º§π‚shader ≤Œøºhttps://www.shadertoy.com/view/XtBXW3
-	auto sn = ShaderNode::shaderNodeWithVertex("Shaders/Common.vert", "Shaders/Laser.frag");
+	//¿ÿ…‰º§π‚shader https://www.shadertoy.com/view/XtBXW3
+	//auto sn = ShaderNode::shaderNodeWithVertex("Shaders/Common.vert", "Shaders/Laser.frag");
 
-	
-	
+	//Õ∏√˜≈›≈› https://www.shadertoy.com/view/MlXBWM
+	//auto sn = ShaderNode::shaderNodeWithVertex("Shaders/Common.vert", "Shaders/transparent_bubbles.frag");
+
+	//œ¬”Í≤£¡ß https://www.shadertoy.com/view/MdfBRX
+	auto sn = ShaderNode::shaderNodeWithVertex("Shaders/Common.vert", "Shaders/rain.frag");
+
 	addChild(sn);
     return true;
 }
