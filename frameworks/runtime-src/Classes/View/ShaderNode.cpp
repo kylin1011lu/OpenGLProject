@@ -49,14 +49,14 @@ bool ShaderNode::initWithVertex(const std::string &vert, const std::string &frag
 #endif
 
     loadShaderVertex(vert, frag);
-
+	auto size = Director::getInstance()->getWinSize();
     _time = 0;
-    _resolution = Vec2(SIZE_X, SIZE_Y);
+    _resolution = Vec2(size.width, size.height);
 
     scheduleUpdate();
 
-    setContentSize(Size(SIZE_X, SIZE_Y));
-    setAnchorPoint(Vec2(0.5f, 0.5f));
+    //setContentSize(Size(SIZE_X, SIZE_Y));
+    //setAnchorPoint(Vec2(0.5f, 0.5f));
     
 
     return true;
@@ -108,20 +108,16 @@ void ShaderNode::draw(Renderer *renderer, const Mat4 &transform, uint32_t flags)
 
 void ShaderNode::onDraw(const Mat4 &transform, uint32_t flags)
 {
-    float w = SIZE_X, h = SIZE_Y;
+	auto size = Director::getInstance()->getWinSize();
+    float w = size.width, h = size.height;
     GLfloat vertices[12] = {0,0, w,0, w,h, 0,0, 0,h, w,h};
 
-    auto glProgramState = getGLProgramState();
-    glProgramState->setUniformVec2("resolution", _resolution);
-    glProgramState->setUniformVec2("center", _center);
-    glProgramState->setVertexAttribPointer("a_position", 2, GL_FLOAT, GL_FALSE, 0, vertices);
-
-
+	auto glProgramState = getGLProgramState();
+	glProgramState->setVertexAttribPointer("a_position", 2, GL_FLOAT, GL_FALSE, 0, vertices);
+	glProgramState->setUniformVec2("iResolution", Vec2(w,h));
 	// Right: normal sprite
 	//auto right = Sprite::create("Images/grossinis_sister2.png");
 	//glProgramState->setUniformTexture("u_texture1", right->getTexture());
-
-
 
     glProgramState->apply(transform);
 

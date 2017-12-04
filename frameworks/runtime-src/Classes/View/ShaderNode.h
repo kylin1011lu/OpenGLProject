@@ -14,6 +14,8 @@ public:
     virtual void setPosition(const cocos2d::Vec2 &newPosition) override;
     virtual void draw(cocos2d::Renderer* renderer, const cocos2d::Mat4& transform, uint32_t flags) override;
 
+	cocos2d::Vec2 getResolution() { return _resolution; }
+
 protected:
     ShaderNode();
     ~ShaderNode();

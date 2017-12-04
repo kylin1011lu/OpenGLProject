@@ -1,4 +1,5 @@
 #include "ShowScene.h"
+#include "ShaderNode.h"
 #include "PolygonLayer/PolygonLayer.h"
 
 
@@ -65,8 +66,17 @@ bool ShowScene::init()
 	//auto polylayer = PolygonLayer::create(Color4B::BLUE);
 	//this->addChild(polylayer);
 
-	addBubblesShaderSprite();
+	//addBubblesShaderSprite();
 
+	//∂‡≤ ≈›≈›“∆∂Øshader ≤Œøºhttps://www.shadertoy.com/view/4dl3zn
+	//auto sn = ShaderNode::shaderNodeWithVertex("Shaders/Common.vert", "Shaders/bubbles.frag");
+	
+	//¿ÿ…‰º§π‚shader ≤Œøºhttps://www.shadertoy.com/view/XtBXW3
+	auto sn = ShaderNode::shaderNodeWithVertex("Shaders/Common.vert", "Shaders/Laser.frag");
+
+	
+	
+	addChild(sn);
     return true;
 }
 

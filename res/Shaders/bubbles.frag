@@ -1,11 +1,11 @@
 // frag
-uniform vec3 iResolution;
+uniform vec2 iResolution;
 varying vec2 v_texCoord;
 varying float iTime;
 
 void mainImage( out vec4 fragColor, in vec2 fragCoord )
 {
-    vec2 uv = -1.0 + 2.0*fragCoord.xy / iResolution.xy;
+    vec2 uv = -1.0 + fragCoord.xy / iResolution.xy;
     uv.x *=  iResolution.x / iResolution.y;
 
     // background    
@@ -33,13 +33,13 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord )
     }
 
     // vigneting    
-    color *= sqrt(1.5-0.5*length(uv));
+    //color *= sqrt(1.5-0.5*length(uv));
 
     fragColor = vec4(color,1.0);
 }
 
 void main(void)
 {
-    vec2 fragCoord = v_texCoord;
+    vec2 fragCoord = gl_FragCoord.xy;
     mainImage(gl_FragColor.rgba, fragCoord); 
 }
