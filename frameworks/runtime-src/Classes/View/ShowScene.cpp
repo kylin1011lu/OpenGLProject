@@ -1,7 +1,7 @@
 #include "ShowScene.h"
 #include "ShaderNode.h"
 #include "PolygonLayer/PolygonLayer.h"
-
+#include "TriangleLayer.h"
 
 USING_NS_CC;
 
@@ -68,6 +68,7 @@ bool ShowScene::init()
 
 	//addBubblesShaderSprite();
 
+	/*
 	//¶à²ÊÅÝÅÝÒÆ¶¯shader https://www.shadertoy.com/view/4dl3zn
 	//auto sn = ShaderNode::shaderNodeWithVertex("Shaders/Common.vert", "Shaders/bubbles.frag");
 	
@@ -95,6 +96,13 @@ bool ShowScene::init()
 	sn->getGLProgramState()->setUniformTexture("iChannel0", TextureCache::getInstance()->addImage("Textures/rgba_noise.png"));
 
 	addChild(sn);
+	*/
+
+	TriangleLayer* trianglelayer = TriangleLayer::create();
+	trianglelayer->setGLProgramState(GLProgramState::getOrCreateWithGLProgramName(GLProgram::SHADER_NAME_POSITION_COLOR));
+	addChild(trianglelayer);
+	trianglelayer->setName("TriangleLayer");
+
     return true;
 }
 

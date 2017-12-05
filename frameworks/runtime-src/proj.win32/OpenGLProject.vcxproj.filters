@@ -41,6 +41,9 @@
     <ClInclude Include="..\Classes\View\ShaderNode.h">
       <Filter>Classes\View</Filter>
     </ClInclude>
+    <ClInclude Include="..\Classes\View\TriangleLayer.h">
+      <Filter>Classes\View</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Classes\AppDelegate.cpp">
@@ -60,6 +63,9 @@
       <Filter>Classes\View</Filter>
     </ClCompile>
     <ClCompile Include="..\Classes\View\ShaderNode.cpp">
+      <Filter>Classes\View</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Classes\View\TriangleLayer.cpp">
       <Filter>Classes\View</Filter>
     </ClCompile>
   </ItemGroup>
