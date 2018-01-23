@@ -94,14 +94,18 @@ bool ShowScene::init()
 	//调色板 https://www.shadertoy.com/view/ll2GD3
 	auto sn = ShaderNode::shaderNodeWithVertex("Shaders/Common.vert", "Shaders/Palettes.frag");
 	sn->getGLProgramState()->setUniformTexture("iChannel0", TextureCache::getInstance()->addImage("Textures/rgba_noise.png"));
-
-	addChild(sn);
 	*/
 
-	TriangleLayer* trianglelayer = TriangleLayer::create();
-	trianglelayer->setGLProgramState(GLProgramState::getOrCreateWithGLProgramName(GLProgram::SHADER_NAME_POSITION_COLOR));
-	addChild(trianglelayer);
-	trianglelayer->setName("TriangleLayer");
+	//流光效果
+	auto sn = ShaderNode::shaderNodeWithVertex("Shaders/Common.vert", "Shaders/streamlight.frag");
+
+	addChild(sn);
+
+
+	//TriangleLayer* trianglelayer = TriangleLayer::create();
+	//trianglelayer->setGLProgramState(GLProgramState::getOrCreateWithGLProgramName(GLProgram::SHADER_NAME_POSITION_COLOR));
+	//addChild(trianglelayer);
+	//trianglelayer->setName("TriangleLayer");
 
     return true;
 }
